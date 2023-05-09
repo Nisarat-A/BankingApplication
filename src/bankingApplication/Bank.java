@@ -23,11 +23,12 @@ public class Bank {
             option = sc.nextInt(); // get input from user
             System.out.println();
             switch (option){
-             case 1;
+                case 1:
                 case 2:  number= 1111;
-                    System.out.println("Enter Account Name : ");
+                    System.out.print("Enter Account Name : ");
                     name = sc.nextLine();
-                    System.out.println("Enter Account Balance : ");
+                    System.out.print("Enter Account Initial Balance : ");
+                    balance = sc.nextDouble();
                     account = new Account(number,name,balance);
             }
         }
