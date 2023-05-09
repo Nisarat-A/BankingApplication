@@ -1,8 +1,10 @@
 package bankingApplication;
+import java.sql.SQLException;
+import java.util.Random;
 import java.util.Scanner;
 
 public class BankingApp {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         Account account ;
         int option = 0,number;
         String name;
@@ -25,10 +27,14 @@ public class BankingApp {
             System.out.println();
             switch (option){
                 case 1:
-                    bank.listAccounts();
+                    try {
+                        bank.listAccounts();
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
                     break;
                 case 2:
-                    number= 1111;
+                    number= generateAccountNumber();
                     System.out.print("Enter Account Name : ");
                     name = sc.nextLine();
                     System.out.print("Enter Account Initial Balance : ");
@@ -40,6 +46,8 @@ public class BankingApp {
                     System.out.print("Enter Account Number to close :");
                     number= sc.nextInt();
                     bank.closeAccount(number);
+                    System.out.println("Account Closed");
+                    System.out.println();
                     break;
                 case 4 :
                     System.out.print("Enter Account Number to deposit :");
@@ -48,6 +56,7 @@ public class BankingApp {
                     System.out.println("Enter Amount : ");
                     amount = sc.nextDouble();
                     bank.depositMoney(account, amount);
+                    System.out.println("Amount Deposited");
                     break;
                 case 5 :
                     System.out.print("Enter Account Number to withdraw :");
@@ -59,5 +68,10 @@ public class BankingApp {
                     break;
             }
         }
+    }
+    public static int generateAccountNumber(){
+        Random random = new Random();
+        int accNumber = 10000 + random.nextInt(900000);
+        return accNumber;
     }
 }
