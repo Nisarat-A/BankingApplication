@@ -68,10 +68,11 @@ public class Bank {
     }
 
     public Account getAccount(int number) throws SQLException {
-        Connection con = BankConnection.connect();
         Account account = null ; // initialize account to null
         String accountName = "" ;
         double balance = 0.0;
+        Connection con = BankConnection.connect();
+
         String sql = "select * from account where accID =' " + number + "'";
     Statement statement;
 
